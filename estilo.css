@@ -1,0 +1,364 @@
+/* importamos las fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;600;700&family=Yellowtail&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Tourney:ital,wght@1,200&display=swap');
+
+ 
+*{
+    font-family: 'Titillium Web';
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 3rem;
+    letter-spacing: 5px;
+}
+
+h2 {
+    font-weight: normal;
+    font-size: 20px;
+    margin-top: -10px;
+    letter-spacing: 2px;
+}
+
+#inicio {   
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)),
+    url("img/fondo.jpg");
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    
+}
+
+
+
+.foto {
+    position: relative;
+}
+
+.fotoo img {
+    max-width: 150px;
+    border-radius: 50%;
+    border: 5px solid rgb(58, 141, 180); 
+}
+
+#menu {
+    
+    position: fixed;
+    margin-left: 60px;
+    background-color:rgb(58, 141, 180);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+    z-index: 99;  
+}
+
+.inicio .contenido-seccion header #menu{
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#redes a {   
+    display:inline-block;
+    text-decoration: none;
+    color: rgb(58, 141, 180);   
+    width: 40px;
+    height: 0px;
+    line-height: 40px;
+    margin: 0 5px;
+    transition: .3s;  
+    font-size: 25px;
+}
+
+.social a:hover {
+    box-shadow: 0 0 35px #fff;
+    text-shadow: 0 0 10px rgb(58, 141, 180);
+}
+ 
+#toggle-menu {
+
+        position: fixed;
+        background-color: rgb(58, 141, 180);
+        font-size: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        line-height: 50px;
+        cursor: pointer;
+        transition: .3s;
+        z-index: 99;
+}
+
+#menu a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-weight: bold
+}
+span {
+    font-family: 'Tourney';
+    margin-top: 300px;
+    text-align: center;
+        font-weight: bold;
+    font-size: 2.5rem;
+    font-family: "Yellowtail";
+    text-shadow: 0 0 10px #fff,
+                 0 0 30px rgb(58, 141, 180);
+}
+
+/* SECCION SOBRE MI */
+
+.sobremi{
+    font-size: 18px;
+    background-color: #e6e6e6;
+    padding: 40px 0 100px 0;
+    text-align: center;
+   
+}
+.sobremi .contenido-seccion{
+    max-width: 1000px;
+    margin: auto;
+    padding: 0 10px;
+    
+}
+.sobremi .contenido-seccion h3{
+    font-size: 30px;
+}
+
+.fila {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    
+    
+   
+}
+.titulo-seccion {
+    font-size: 18px;
+}
+
+
+
+.sobremi .contenido-seccion .fila .col{
+    width: 30%;
+}
+
+.sobremi .contenido-seccion .fila .col i{
+    color: rgb(58, 141, 180);;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgb(58, 141, 180);
+    line-height: 40px;
+    border-radius: 50%;
+}
+.sobremi .contenido-seccion .fila .col span{
+    display: block;
+    font-weight: bold;
+    margin: 8px 0;
+}
+.sobremi .contenido-seccion .especial{
+    color: rgb(58, 141, 180);
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+
+
+.habilidades{
+    padding: 80px 0 100px 0;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)),
+    url("img/habilidades.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    color: #fff;
+}
+
+.habilidades .contenido-seccion .titulo-seccion {
+    margin: 10px;
+    text-align: center;
+    font-size: 30px;
+}
+
+
+
+
+
+.habilidades .contenido-seccion h3{
+    font-size: 30px;
+    margin: 10px;
+    text-align: center;
+}
+
+.habilidades .contenido-seccion .fila .col i {
+    color: rgb(58, 141, 180);   
+    width: 90px;
+    height: 90px;
+    margin: 0 5px;
+    transition: .3s;  
+    font-size: 90px;
+    text-shadow: 0 0 10px #fff,
+                 0 0 30px rgb(58, 141, 180);
+}
+
+.resumen .contenido-seccion h3 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 28px;
+}
+
+
+
+.columna {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;
+
+}
+
+.resumen .contenido-seccion .fila .columna i{
+    color: rgb(58, 141, 180);;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgb(58, 141, 180);
+    line-height: 40px;
+    border-radius: 50%;
+}
+
+
+/* SECCION CONTACTO */
+.contacto{
+    background-color: #202020;
+    padding: 140px 0 100px 0;
+    color: #e6e6e6;
+    text-align: center;
+}
+
+.contacto .contenido-seccion{
+    max-width: 1000px;
+    margin: auto;
+    padding: 0 10px;
+}
+.contacto .contenido-seccion h3{
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+.contacto .contenido-seccion .fila{
+    display: flex;
+    justify-content: space-around;
+}
+.contacto .contenido-seccion .fila .columna{
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+.contacto .contenido-seccion .fila .columna i {
+    color: rgb(58, 141, 180);
+}
+
+.message-box {
+    border: 1px solid black;
+    background-color: lightgray;
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.mensaje {
+    margin-top: 50px;
+    display: inline-block;
+    text-align: left;
+}
+
+form label {
+    display: inline-block;
+    width: 100px;
+    height: 25px;
+    text-align: right;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: 300px;
+    height: 25px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+
+
+form input[type="submit"] {
+    
+
+    width: 100%;
+    height: 50px;
+    background-color: rgb(58, 141, 180);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.enviarMensaje:hover {
+    box-shadow: 0 0 8px #fff;
+    text-shadow: 0 0 10px rgb(58, 141, 180);
+}
+
+/* SECCION RESPONSIVE */
+@media screen and (max-width:800px){
+    .habilidades .contenido-seccion .fila{
+        display: block;
+    }
+    .habilidades .contenido-seccion .fila .col{
+        width: 100%;
+        text-align: center;
+    }
+    .habilidades .contenido-seccion .fila .col .cont-barra{
+        justify-content: center;
+    }
+    .sobremi .contenido-seccion .fila{
+        display: block;
+    }
+    .sobremi .contenido-seccion .fila .col{
+        width: 80%;
+        margin: auto;
+        margin-top: 20px;
+    }
+    .resumen .contenido-seccion .info{
+        display: block;
+    }
+    .resumen .contenido-seccion .info .columna{
+        width: 90%;
+        margin: auto;
+    }
+    .resumen .contenido-seccion .info .columna .div{
+        display: block;
+        text-align: center;
+    }
+    
+    .contacto .contenido-seccion .fila{
+        display: block;
+    }
+}
+
+
+    
