@@ -79,6 +79,7 @@ h2 {
 .social a:hover {
     box-shadow: 0 0 35px #fff;
     text-shadow: 0 0 10px rgb(58, 141, 180);
+    cursor: pointer;
 }
  
 #toggle-menu {
