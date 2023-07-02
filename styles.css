@@ -14,10 +14,18 @@ body {
   padding: 10px;
 }
 
+
+.entrada {
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* Estilos para el calendario */
 
 .highlight-day {
-  background-color: #90ee90 !important;
+  background-color: #0faf0f !important;
   background-image: none !important;
   color: #000000 !important;
   font-weight: bold;
@@ -45,7 +53,6 @@ section {
 }
 
 #seleccionDeHora {
-  border: #000000 1px solid;
   margin: 10px;
   display: flex;
   justify-content: space-between;

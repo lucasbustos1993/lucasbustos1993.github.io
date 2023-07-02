@@ -33,7 +33,22 @@ $(function() {
   }).datepicker("show"); // Mostrar el calendario al cargar la página
   // Llamar a la función actualizarHorasAcumuladas() después de cargar la página
   actualizarHorasAcumuladas();
+  
 });
+
+//Tomar el vlaor de entrada
+var horaEntrada = document.getElementById("horaEntrada");  // Obtener el elemento del DOM
+var hh;
+
+horaEntrada.addEventListener("change", function() {
+  var entHor = horaEntrada.value;  // Obtener el valor del campo de entrada
+var horaPartes = entHor.split(":");  // Dividir la cadena en horas y minutos
+hh = parseInt(horaPartes[0]);  // Obtener la hora como un número entero
+  console.log(hh);  // Mostrar la hora en la consola
+});
+
+
+
 
 function calcularHoras() {
   
@@ -53,6 +68,7 @@ function calcularHoras() {
     }
   }
   actualizarHorasAcumuladas(totalHoras80, totalHoras100);
+  
 }
 
 function reiniciarMes() {
@@ -130,12 +146,18 @@ function siSabado() {
   var horaSalida = document.getElementById("horaSalida").value;
   var fechaSeleccionada = $("#datepicker").datepicker("getDate");
   var limiteHoraExtraSabado = [
-    [12, 14, 0.5],
-    [12, 44, 1],
-    [13, 14, 1.5],
-    [13, 44, 2],
-    [14, 14, 2.5],
-    [14, 44, 3]
+    [hh+6, 14, 0.5],
+    [hh+6, 44, 1],
+    [hh+7, 14, 1.5],
+    [hh+7, 44, 2],
+    [hh+8, 14, 2.5],
+    [hh+8, 44, 3],
+    [hh+9, 14, 3.5],
+    [hh+9, 44, 4],
+    [hh+10, 14, 4.5],
+    [hh+10, 44, 5],
+    [hh+11, 14, 5.5],
+    [hh+11, 44, 6]
   ];
 
   var fechaHoraSalida = new Date(fechaSeleccionada);
@@ -179,12 +201,18 @@ function siSemana() {
   var horaSalida = document.getElementById("horaSalida").value;
   var fechaSeleccionada = $("#datepicker").datepicker("getDate");
   var limiteHoraExtra = [
-    [15, 14, 0.5],
-    [15, 44, 1],
-    [16, 14, 1.5],
-    [16, 44, 2],
-    [17, 14, 2.5],
-    [17, 44, 3]
+    [hh+9, 14, 0.5],
+    [hh+9, 44, 1],
+    [hh+10, 14, 1.5],
+    [hh+10, 44, 2],
+    [hh+11, 14, 2.5],
+    [hh+11, 44, 3],
+    [hh+12, 14, 3.5],
+    [hh+12, 44, 4],
+    [hh+13, 14, 4.5],
+    [hh+13, 44, 5]
+    [hh+14, 14, 5.5],
+    [hh+14, 44, 6]  
   ];
 
   var fechaHoraSalida = new Date(fechaSeleccionada);
@@ -219,6 +247,3 @@ function siSemana() {
     alert("Ya existe un valor guardado para este día.");
   }
 }
-
-
-
