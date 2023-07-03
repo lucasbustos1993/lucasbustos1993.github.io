@@ -143,6 +143,11 @@ function actualizarHorasAcumuladas() {
 }
 
 function siSabado() {
+  if (typeof hh === 'undefined') {
+    alert("Seleccione una hora de entrada");
+    return; // Detener la ejecución de la función si no hay valor en hh
+  }
+
   var horaSalida = document.getElementById("horaSalida").value;
   var fechaSeleccionada = $("#datepicker").datepicker("getDate");
   var limiteHoraExtraSabado = [
@@ -193,10 +198,16 @@ function siSabado() {
   } else {
     alert("Ya existe un valor guardado para este día.");
   }
+
+
 }
 
 
 function siSemana() {
+  if (typeof hh === 'undefined') {
+    alert("Seleccione una hora de entrada");
+    return; // Detener la ejecución de la función si no hay valor en hh
+  }
   
   var horaSalida = document.getElementById("horaSalida").value;
   var fechaSeleccionada = $("#datepicker").datepicker("getDate");
@@ -247,3 +258,5 @@ function siSemana() {
     alert("Ya existe un valor guardado para este día.");
   }
 }
+
+//esto es un cambio
