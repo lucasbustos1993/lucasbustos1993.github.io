@@ -51,8 +51,17 @@ hh = parseInt(horaPartes[0]);  // Obtener la hora como un número entero
 
 
 function calcularHoras() {
-  
+  var horaSalida = document.getElementById("horaSalida").value;
   var fechaSeleccionada = $("#datepicker").datepicker("getDate");
+  if (!horaSalida) {
+    alert("Seleccione un horario de salida");
+    return; // Detener la ejecución de la función
+  }
+
+  if (typeof hh === 'undefined') {
+    alert("Seleccione una hora de entrada");
+    return; // Detener la ejecución de la función si no hay valor en hh
+  }
   
   if (fechaSeleccionada) {
     var diaSemana = fechaSeleccionada.getDay();
@@ -143,12 +152,11 @@ function actualizarHorasAcumuladas() {
 }
 
 function siSabado() {
-  if (typeof hh === 'undefined') {
-    alert("Seleccione una hora de entrada");
-    return; // Detener la ejecución de la función si no hay valor en hh
-  }
-
   var horaSalida = document.getElementById("horaSalida").value;
+
+ 
+  
+
   var fechaSeleccionada = $("#datepicker").datepicker("getDate");
   var limiteHoraExtraSabado = [
     [hh+6, 14, 0.5],
@@ -204,12 +212,9 @@ function siSabado() {
 
 
 function siSemana() {
-  if (typeof hh === 'undefined') {
-    alert("Seleccione una hora de entrada");
-    return; // Detener la ejecución de la función si no hay valor en hh
-  }
-  
   var horaSalida = document.getElementById("horaSalida").value;
+  
+  
   var fechaSeleccionada = $("#datepicker").datepicker("getDate");
   var limiteHoraExtra = [
     [hh+9, 14, 0.5],
