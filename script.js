@@ -142,14 +142,51 @@ function valorHora() {
 var totalHoras100 = 0;
 var totalHoras80 = 0;
 
-  
+var storedTotalHoras100 = localStorage.getItem("totalHoras100_");
+var storedTotalHoras80 = localStorage.getItem("totalHoras80_");
+
+if (storedTotalHoras100 !== null) {
+  totalHoras100 = parseInt(storedTotalHoras100);
+}
+
+if (storedTotalHoras80 !== null) {
+  totalHoras80 = parseInt(storedTotalHoras80);
+}
+
 function actualizarHorasAcumuladas() {
-  // Mostrar las horas extras acumuladas en pantalla
   document.getElementById("mostrar80").textContent = totalHoras80;
   console.log(totalHoras80);
   document.getElementById("mostrar100").textContent = totalHoras100;
   console.log(totalHoras100);
 }
+
+function actualizarValores() {
+  totalHoras100 += 1;
+  totalHoras80 += 1;
+
+  localStorage.setItem("totalHoras100_", totalHoras100);
+  localStorage.setItem("totalHoras80_", totalHoras80);
+
+  actualizarHorasAcumuladas();
+}
+
+window.addEventListener("load", function() {
+  actualizarHorasAcumuladas();
+});
+
+window.addEventListener("beforeunload", function() {
+  localStorage.setItem("totalHoras100_", totalHoras100);
+  localStorage.setItem("totalHoras80_", totalHoras80);
+});
+
+actualizarHorasAcumuladas();
+
+
+
+
+
+
+
 
 function siSabado() {
   var horaSalida = document.getElementById("horaSalida").value;
