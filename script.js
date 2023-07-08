@@ -80,34 +80,6 @@ function calcularHoras() {
   
 }
 
-function reiniciarMes() {
-  // Limpiar el LocalStorage
-  localStorage.clear();
-
-  // Actualizar la interfaz después de limpiar el LocalStorage
-  document.getElementById("valorGuardado").textContent = "";
-  totalHoras100 = 0;
-  totalHoras80 = 0;
-
-  // Recorrer todas las claves del almacenamiento local
-  for (var i = 0; i < localStorage.length; i++) {
-    var clave = localStorage.key(i);
-    
-    // Verificar si la clave es de horas extras
-    if (clave.startsWith("horasExtras_")) {
-      // Eliminar la clave del almacenamiento local
-      localStorage.removeItem(clave);
-    }
-  }
-
-  // Remover estilos de resaltado en el calendario
-  $(".ui-datepicker-calendar a.ui-state-highlight").removeClass("ui-state-highlight");
-
-  // Actualizar el calendario para reflejar los cambios
-  $("#datepicker").datepicker("refresh");
-  actualizarHorasAcumuladas(0, 0);
-
-}
 
 
 
@@ -118,25 +90,7 @@ function eliminar() {
   document.getElementById("borrar").style.display = "none"; // Ocultar el botón "Borrar"
 }
 
-function valorHora() {
-  var hora80 = parseFloat(document.getElementById("abonado80").value);
-  var cantidad80 = parseFloat(document.getElementById("cantidad80").value);
-  var valor80 = (hora80 / cantidad80).toFixed(2);
-  document.getElementById("valorHora80").textContent = "Valor hora extra 80%: " + valor80;
 
-  var hora100 = parseFloat(document.getElementById("abonado100").value);
-  var cantidad100 = parseFloat(document.getElementById("cantidad100").value);
-  var valor100 = (hora100 / cantidad100).toFixed(2);
-  document.getElementById("valorHora100").textContent = "Valor hora extra 100%: " + valor100;
-
-  var abonado80 = totalHoras80;
-  var abonado100 = totalHoras100;
-
-  var enMano = ((abonado80 * valor80) + (abonado100 * valor100)).toFixed(2);
-  document.getElementById("enMano").textContent = "Monto a cobrar en mano: " + enMano;
-
-  document.getElementById("resultados").style.display = "block";
-}
 
 
 var totalHoras100 = 0;
@@ -171,6 +125,17 @@ function actualizarValores() {
 }
 
 window.addEventListener("load", function() {
+  var storedTotalHoras100 = localStorage.getItem("totalHoras100_");
+  var storedTotalHoras80 = localStorage.getItem("totalHoras80_");
+
+  if (storedTotalHoras100 !== null) {
+    totalHoras100 = parseInt(storedTotalHoras100);
+  }
+
+  if (storedTotalHoras80 !== null) {
+    totalHoras80 = parseInt(storedTotalHoras80);
+  }
+
   actualizarHorasAcumuladas();
 });
 
@@ -179,7 +144,7 @@ window.addEventListener("beforeunload", function() {
   localStorage.setItem("totalHoras80_", totalHoras80);
 });
 
-actualizarHorasAcumuladas();
+
 
 
 
@@ -301,4 +266,52 @@ function siSemana() {
   }
 }
 
-//esto es un cambio
+function valorHora() {
+  var hora80 = parseFloat(document.getElementById("abonado80").value);
+  var cantidad80 = parseFloat(document.getElementById("cantidad80").value);
+  var valor80 = (hora80 / cantidad80).toFixed(2);
+  document.getElementById("valorHora80").textContent = "Valor hora extra 80%: " + valor80;
+
+  var hora100 = parseFloat(document.getElementById("abonado100").value);
+  var cantidad100 = parseFloat(document.getElementById("cantidad100").value);
+  var valor100 = (hora100 / cantidad100).toFixed(2);
+  document.getElementById("valorHora100").textContent = "Valor hora extra 100%: " + valor100;
+
+  var abonado80 = totalHoras80;
+  var abonado100 = totalHoras100;
+
+  var enMano = ((abonado80 * valor80) + (abonado100 * valor100)).toFixed(2)-(hora80+hora100);
+  document.getElementById("enMano").textContent = "Monto a cobrar en mano: " + enMano.toFixed(2);
+
+  document.getElementById("resultados").style.display = "block";
+}
+
+
+function reiniciarMes() {
+  // Limpiar el LocalStorage
+  localStorage.clear();
+
+  // Actualizar la interfaz después de limpiar el LocalStorage
+  document.getElementById("valorGuardado").textContent = "";
+  totalHoras100 = 0;
+  totalHoras80 = 0;
+
+  // Recorrer todas las claves del almacenamiento local
+  for (var i = 0; i < localStorage.length; i++) {
+    var clave = localStorage.key(i);
+    
+    // Verificar si la clave es de horas extras
+    if (clave.startsWith("horasExtras_")) {
+      // Eliminar la clave del almacenamiento local
+      localStorage.removeItem(clave);
+    }
+  }
+
+  // Remover estilos de resaltado en el calendario
+  $(".ui-datepicker-calendar a.ui-state-highlight").removeClass("ui-state-highlight");
+
+  // Actualizar el calendario para reflejar los cambios
+  $("#datepicker").datepicker("refresh");
+  actualizarHorasAcumuladas(0, 0);
+
+}
