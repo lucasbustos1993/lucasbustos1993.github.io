@@ -1,5 +1,24 @@
 /* Estilos generales */
 
+/* Estilos para el modo noche */
+
+
+body.modo-noche {
+  background-color: #000000;
+  color: #ffff;
+}
+
+.modo-noche .titulo {
+  border-color: #2a80b9;
+}
+
+.modo-noche section {
+  border: #2a80b9 1px solid;
+}
+
+
+
+
 * {
   box-sizing: border-box;
 }
@@ -27,12 +46,13 @@ body {
 .highlight-day {
   background-color: #0faf0f !important;
   background-image: none !important;
-  color: #000000 !important;
   font-weight: bold;
+  border: #0faf0f solid 1px !important;
 }
 
 .ui-datepicker-week-end .ui-state-default {
   color: red !important;
+
 }
 
 button {
@@ -59,6 +79,17 @@ section {
   align-items: center;
 }
 
+#datepicker {
+  display: grid;
+  place-items: center;
+  font-size: 16px
+}
+
+.guardado {
+  display: grid;
+  place-items: center;
+}
+
 .calendar {
   border: #000000 1px solid;
   margin: 10px;
@@ -71,9 +102,8 @@ section {
 }
 
 .calendario {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
 }
 
 .acumulado {
@@ -85,35 +115,49 @@ section {
   flex-wrap: wrap;
 }
 
+.btn-calcularTotal {
+  margin: auto;
+}
+
 .recibo .montos,
 .recibo .horas {
-  flex: 1 1 50%;
-  padding: 5px;
+  display: grid;
+  place-items: center;
+  margin: 10px;
 }
 
 .recibo h4 {
   margin-top: 0;
 }
 
-.resultados {
-  text-align: center;
+.resultado {
+  display: grid;
+  place-items: center;
+  margin: 10px;
+}
+
+footer{
+  display: grid;
+  place-items: center;
 }
 
 /* Estilos para dispositivos móviles */
 
 @media (max-width: 600px) {
-  .calendario {
-    flex-direction: column;
+  .calendar {
+    display: grid;
+  place-items: center;
   }
 
   #seleccionDeHora {
-    flex-direction: column;
-    align-items: stretch;
+    display: grid;
+  place-items: center;
   }
 
-  .recibo .montos,
-  .recibo .horas {
-    flex: 1 1 100%;
+  .recibo {
+    display: grid;
+  place-items: center;
+  text-align: center;
   }
 }
 

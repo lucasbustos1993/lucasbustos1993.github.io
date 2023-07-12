@@ -315,3 +315,57 @@ function reiniciarMes() {
   actualizarHorasAcumuladas(0, 0);
 
 }
+
+
+
+
+function cambiarModoNoche() {
+  var body = document.querySelector('body');
+  body.classList.toggle('modo-noche');
+
+
+  var modoNocheIcono = document.getElementById('modoNocheIcono');
+
+  if (body.classList.contains('modo-noche')) {
+    modoNocheIcono.innerHTML = '<i class="fa-regular fa-sun"></i>'; // Ícono del sol
+  } else {
+    modoNocheIcono.innerHTML = '<i class="fa-solid fa-moon"></i>'; // Ícono de la luna
+  }
+}
+
+
+document.getElementById("imprimirValores").addEventListener("click", function() {
+  var printContents = ""; // Contenido a imprimir
+
+  // Recorrer todas las claves del LocalStorage
+  for (var i = 0; i < localStorage.length; i++) {
+    var clave = localStorage.key(i);
+
+    // Verificar si la clave es de horas extras
+    if (clave.startsWith("horasExtras_")) {
+      // Obtener la fecha a partir de la clave
+      var fecha = clave.split("_")[1];
+
+      // Obtener el valor almacenado para la fecha
+      var horasExtras = localStorage.getItem(clave);
+
+      // Obtener los horarios de entrada y salida para la fecha
+      var horariosEntrada = localStorage.getItem("horariosEntrada_" + fecha);
+      var horariosSalida = localStorage.getItem("horariosSalida_" + fecha);
+
+      // Agregar la fecha, horarios de entrada, horarios de salida y valor de horas extras al contenido a imprimir
+      printContents += "Fecha: " + fecha + "\n";
+      printContents += "Horarios de Entrada: " + horariosEntrada + "\n";
+      printContents += "Horarios de Salida: " + horariosSalida + "\n";
+      printContents += "Horas Extras: " + horasExtras + "\n\n";
+    }
+  }
+
+  // Abrir la ventana de impresión y mostrar el contenido
+  var popupWin = window.open("", "_blank");
+  popupWin.document.open();
+  popupWin.document.write("<pre>" + printContents + "</pre>");
+  popupWin.document.close();
+  popupWin.print();
+});
+
