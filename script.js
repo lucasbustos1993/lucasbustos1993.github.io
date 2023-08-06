@@ -55,6 +55,7 @@ mm = parseInt(horaPartes[1]); //Obtener los minutos como numero entero
 function calcularHoras() {
   var horaSalida = document.getElementById("horaSalida").value;
   var fechaSeleccionada = $("#datepicker").datepicker("getDate");
+  
   if (!horaSalida) {
     alert("Seleccione un horario de salida");
     return; // Detener la ejecución de la función
@@ -84,17 +85,6 @@ function calcularHoras() {
 
 
 
-
-function eliminar() {
-  var formattedDate = $.datepicker.formatDate("yy-mm-dd", $("#datepicker").datepicker("getDate"));
-  localStorage.removeItem("horasExtras_" + formattedDate);
-  document.getElementById("valorGuardado").textContent = ""; // Limpiar el valor guardado en pantalla
-  document.getElementById("borrar").style.display = "none"; // Ocultar el botón "Borrar"
-}
-
-
-
-
 var totalHoras100 = 0;
 var totalHoras80 = 0;
 
@@ -108,6 +98,36 @@ if (storedTotalHoras100 !== null) {
 if (storedTotalHoras80 !== null) {
   totalHoras80 = parseInt(storedTotalHoras80);
 }
+
+function eliminar() {
+  var formattedDate = $.datepicker.formatDate("yy-mm-dd", $("#datepicker").datepicker("getDate"));
+  var fechaSeleccionada = $("#datepicker").datepicker("getDate");
+  var horasExtras = localStorage.getItem("horasExtras_" + formattedDate);
+  if (fechaSeleccionada) {
+    var diaSemana = fechaSeleccionada.getDay();
+    if (diaSemana === 0) {
+      console.log("domingo");
+      return;
+    } else if (diaSemana === 6){
+      totalHoras100 -= horasExtras;
+    } else if (diaSemana > 0 && diaSemana < 6) {
+      totalHoras80 -= horasExtras;
+    } else {
+      alert("Selecciona una fecha");
+    }
+  }
+   
+    actualizarHorasAcumuladas()   
+  
+  
+  localStorage.removeItem("horasExtras_" + formattedDate);
+  document.getElementById("valorGuardado").textContent = ""; // Limpiar el valor guardado en pantalla
+  document.getElementById("borrar").style.display = "none"; // Ocultar el botón "Borrar"
+
+  actualizarHorasAcumuladas()
+  }
+
+
 
 function actualizarHorasAcumuladas() {
   document.getElementById("mostrar80").textContent = totalHoras80;
