@@ -1,3 +1,4 @@
+/*
 $(function() {
   $("#datepicker").datepicker({
     beforeShowDay: function(date) {
@@ -35,6 +36,47 @@ $(function() {
   actualizarHorasAcumuladas();
   
 });
+*/
+
+// Función para obtener la fecha en formato YYYY-MM-DD
+function getFormattedDate(date) {
+  return $.datepicker.formatDate("yy-mm-dd", date);
+}
+
+// Función para mostrar o esconder el valor guardado y el botón "Borrar"
+function mostrarValorGuardado(horasExtras) {
+  if (horasExtras !== null) {
+    document.getElementById("valorGuardado").textContent = "Valor guardado: " + horasExtras + " horas";
+    document.getElementById("borrar").style.display = "inline"; // Mostrar el botón "Borrar"
+  } else {
+    document.getElementById("valorGuardado").textContent = "";
+    document.getElementById("borrar").style.display = "none"; // Ocultar el botón "Borrar"
+  }
+}
+
+// Evento para el datepicker
+$(function() {
+  $("#datepicker").datepicker({
+    beforeShowDay: function(date) {
+      var formattedDate = getFormattedDate(date);
+      var horasExtras = localStorage.getItem("horasExtras_" + formattedDate);
+      var cssClass = (horasExtras !== null) ? "highlight-day" : "";
+      return [true, cssClass];
+    },
+    onSelect: function(dateText, inst) {
+      var formattedDate = getFormattedDate(new Date(dateText));
+      var horasExtras = localStorage.getItem("horasExtras_" + formattedDate);
+      mostrarValorGuardado(horasExtras);
+    }
+  }).datepicker("show"); // Mostrar el calendario al cargar la página
+
+  // Llamar a la función actualizarHorasAcumuladas() después de cargar la página
+  actualizarHorasAcumuladas();
+});
+
+
+
+
 
 //Tomar el vlaor de entrada
 var horaEntrada = document.getElementById("horaEntrada");  // Obtener el elemento del DOM
@@ -48,6 +90,10 @@ hh = parseInt(horaPartes[0]);  // Obtener la hora como un número entero
 mm = parseInt(horaPartes[1]); //Obtener los minutos como numero entero
   console.log(mm); // Mostrar los minutos en la consola
 });
+
+
+
+
 
 
 
@@ -92,11 +138,11 @@ var storedTotalHoras100 = localStorage.getItem("totalHoras100_");
 var storedTotalHoras80 = localStorage.getItem("totalHoras80_");
 
 if (storedTotalHoras100 !== null) {
-  totalHoras100 = parseInt(storedTotalHoras100);
+  totalHoras100 = storedTotalHoras100;
 }
 
 if (storedTotalHoras80 !== null) {
-  totalHoras80 = parseInt(storedTotalHoras80);
+  totalHoras80 = storedTotalHoras80;
 }
 
 function eliminar() {
@@ -117,7 +163,9 @@ function eliminar() {
     }
   }
    
-    actualizarHorasAcumuladas()   
+    actualizarHorasAcumuladas() 
+    localStorage.setItem("totalHoras100_", totalHoras100);
+    localStorage.setItem("totalHoras80_", totalHoras80);  
   
   
   localStorage.removeItem("horasExtras_" + formattedDate);
@@ -134,6 +182,8 @@ function actualizarHorasAcumuladas() {
   console.log(totalHoras80);
   document.getElementById("mostrar100").textContent = totalHoras100;
   console.log(totalHoras100);
+  localStorage.setItem("totalHoras100_", totalHoras100);
+  localStorage.setItem("totalHoras80_", totalHoras80); 
 }
 
 function actualizarValores() {
@@ -151,11 +201,11 @@ window.addEventListener("load", function() {
   var storedTotalHoras80 = localStorage.getItem("totalHoras80_");
 
   if (storedTotalHoras100 !== null) {
-    totalHoras100 = parseInt(storedTotalHoras100);
+    totalHoras100 = parseFloat(storedTotalHoras100);
   }
 
   if (storedTotalHoras80 !== null) {
-    totalHoras80 = parseInt(storedTotalHoras80);
+    totalHoras80 = parseFloat(storedTotalHoras80);
   }
 
   actualizarHorasAcumuladas();
