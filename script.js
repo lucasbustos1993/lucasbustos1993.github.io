@@ -39,12 +39,14 @@ $(function() {
 //Tomar el vlaor de entrada
 var horaEntrada = document.getElementById("horaEntrada");  // Obtener el elemento del DOM
 var hh;
-
+var mm;
 horaEntrada.addEventListener("change", function() {
   var entHor = horaEntrada.value;  // Obtener el valor del campo de entrada
 var horaPartes = entHor.split(":");  // Dividir la cadena en horas y minutos
 hh = parseInt(horaPartes[0]);  // Obtener la hora como un número entero
   console.log(hh);  // Mostrar la hora en la consola
+mm = parseInt(horaPartes[1]); //Obtener los minutos como numero entero
+  console.log(mm); // Mostrar los minutos en la consola
 });
 
 
@@ -161,18 +163,18 @@ function siSabado() {
 
   var fechaSeleccionada = $("#datepicker").datepicker("getDate");
   var limiteHoraExtraSabado = [
-    [hh+6, 14, 0.5],
-    [hh+6, 44, 1],
-    [hh+7, 14, 1.5],
-    [hh+7, 44, 2],
-    [hh+8, 14, 2.5],
-    [hh+8, 44, 3],
-    [hh+9, 14, 3.5],
-    [hh+9, 44, 4],
-    [hh+10, 14, 4.5],
-    [hh+10, 44, 5],
-    [hh+11, 14, 5.5],
-    [hh+11, 44, 6]
+    [hh+6, mm+14, 0.5],
+    [hh+6, mm+44, 1],
+    [hh+7, mm+14, 1.5],
+    [hh+7, mm+44, 2],
+    [hh+8, mm+14, 2.5],
+    [hh+8, mm+44, 3],
+    [hh+9, mm+14, 3.5],
+    [hh+9, mm+44, 4],
+    [hh+10, mm+14, 4.5],
+    [hh+10, mm+44, 5],
+    [hh+11, mm+14, 5.5],
+    [hh+11, mm+44, 6]
   ];
 
   var fechaHoraSalida = new Date(fechaSeleccionada);
@@ -219,18 +221,18 @@ function siSemana() {
   
   var fechaSeleccionada = $("#datepicker").datepicker("getDate");
   var limiteHoraExtra = [
-    [hh+9, 14, 0.5],
-    [hh+9, 44, 1],
-    [hh+10, 14, 1.5],
-    [hh+10, 44, 2],
-    [hh+11, 14, 2.5],
-    [hh+11, 44, 3],
-    [hh+12, 14, 3.5],
-    [hh+12, 44, 4],
-    [hh+13, 14, 4.5],
-    [hh+13, 44, 5]
-    [hh+14, 14, 5.5],
-    [hh+14, 44, 6]  
+    [hh+9, mm+14, 0.5],
+    [hh+9, mm+44, 1],
+    [hh+10, mm+14, 1.5],
+    [hh+10, mm+44, 2],
+    [hh+11, mm+14, 2.5],
+    [hh+11, mm+44, 3],
+    [hh+12, mm+14, 3.5],
+    [hh+12, mm+44, 4],
+    [hh+13, mm+14, 4.5],
+    [hh+13, mm+44, 5]
+    [hh+14, mm+14, 5.5],
+    [hh+14, mm+44, 6]  
   ];
 
   var fechaHoraSalida = new Date(fechaSeleccionada);
